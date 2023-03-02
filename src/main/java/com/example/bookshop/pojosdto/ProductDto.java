@@ -1,4 +1,4 @@
-package com.example.bookshop.pojos;
+package com.example.bookshop.pojosdto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +10,7 @@ import java.io.Serializable;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductObj implements Serializable {
+public class ProductDto implements Serializable {
 
     private String name;
     private String description;
@@ -18,7 +18,7 @@ public class ProductObj implements Serializable {
     private float price;
     private String image_path;
 
-   public  ProductObj(String name){
+   public ProductDto(String name){
         this.name = name;
     }
 }

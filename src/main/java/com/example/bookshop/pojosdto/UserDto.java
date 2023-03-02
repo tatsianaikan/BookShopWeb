@@ -1,6 +1,5 @@
-package com.example.bookshop.pojos;
+package com.example.bookshop.pojosdto;
 
-import com.example.bookshop.entity.Role;
 import lombok.*;
 
 import java.io.Serializable;
@@ -9,17 +8,17 @@ import java.io.Serializable;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserObj implements Serializable {
+public class UserDto implements Serializable {
 
     private String name;
     private String login;
     private String password;
-    private RoleObj role;
+    private RoleDto role;
     private String email;
     private Double phone;
     private String address;
 
-    public UserObj (String name, String login, RoleObj role){
+    public UserDto(String name, String login, RoleDto role){
         this.name = name;
         this.login = login;
         this.role = role;

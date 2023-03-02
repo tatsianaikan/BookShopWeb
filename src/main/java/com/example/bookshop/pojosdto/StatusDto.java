@@ -1,7 +1,6 @@
-package com.example.bookshop.pojos;
+package com.example.bookshop.pojosdto;
 
-import com.example.bookshop.pojos.enums.StatusType;
-import jakarta.persistence.*;
+import com.example.bookshop.pojosdto.enums.StatusType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
@@ -10,10 +9,10 @@ import java.io.Serializable;
 @Data
 @ToString
 @AllArgsConstructor
-public class StatusObj implements Serializable {
+public class StatusDto implements Serializable {
     private StatusType statusType;
 
-    public StatusObj(){
+    public StatusDto(){
         this.statusType = StatusType.NEW;
     }
 }

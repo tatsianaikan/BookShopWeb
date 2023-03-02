@@ -1,16 +1,15 @@
 package com.example.bookshop.serviceimpl;
 
 import com.example.bookshop.entity.Product;
-import com.example.bookshop.mapper.Converter;
-import com.example.bookshop.pojos.ProductObj;
+import com.example.bookshop.pojosdto.ProductDto;
 import com.example.bookshop.repository.IProductRepository;
 import com.example.bookshop.service.IProductService;
 import jakarta.transaction.Transactional;
-import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.example.bookshop.mapper.Converter.converter;
 
@@ -21,33 +20,44 @@ public class ProductServiceImpl implements IProductService {
     private IProductRepository productRepository;
 
     @Transactional
-    public Product addProduct(ProductObj productObj) {
-       return productRepository.save(converter.productToEntity(productObj));
+    public ProductDto addProduct(ProductDto productDto) {
+       Product productEntry = productRepository.save(converter.productToEntity(productDto));
+       return converter.productToDto(productEntry);
     }
 
     @Transactional
-    public Product editProduct(ProductObj productObj) {
-        return productRepository.save(converter.productToEntity(productObj));
+    public ProductDto editProduct(ProductDto productDto) {
+        Product productEntry = productRepository.save(converter.productToEntity(productDto));
+        return converter.productToDto(productEntry);
     }
 
     @Transactional
-    public Product getProduct(int idProduct) {
-        return productRepository.findById(idProduct).get();
+    public ProductDto getProduct(int idProduct) {
+        Product productEntry = productRepository.findById(idProduct).get();
+        return converter.productToDto(productEntry);
     }
 
     @Transactional
-    public Product searchProduct(int idProduct) {
+    public ProductDto searchProduct(int idProduct) {
         boolean exist = productRepository.equals(idProduct);
         return  exist? getProduct(idProduct) : null;
     }
 
     @Transactional
-    public void deleteProduct(int idProduct) {
+    public String deleteProduct(int idProduct) {
+        ProductDto productDto = new ProductDto();
+        productDto =  getProduct(idProduct);
+
         productRepository.deleteById(idProduct);
+        return productDto.getDescription() + " was deleted!";
+
     }
 
     @Transactional
-    public List<Product> getAllProducts() {
-        return(List<Product>) productRepository.findAll();
+    public List<ProductDto> getAllProducts() {
+        List<Product> productList = (List<Product>) productRepository.findAll();
+        return  productList.stream()
+                           .map(productEntry -> converter.productToDto(productEntry))
+                           .collect(Collectors.toList());
     }
 }

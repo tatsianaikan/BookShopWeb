@@ -1,6 +1,5 @@
-package com.example.bookshop.pojos;
+package com.example.bookshop.pojosdto;
 
-import com.example.bookshop.entity.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,18 +12,18 @@ import java.sql.Time;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookingObj implements Serializable {
+public class BookingDto implements Serializable {
 
     private Long bookingId;
-    private ProductObj product;
+    private ProductDto product;
     private String description;
-    private UserObj user;
+    private UserDto user;
     private Date date;
     private Time time;
-    private StatusObj status;
+    private StatusDto status;
     private int quantity;
 
-    public BookingObj(StatusObj status, String description, ProductObj product, UserObj user){
+    public BookingDto(StatusDto status, String description, ProductDto product, UserDto user){
         this.status = status;
         this.description = description;
         this.product = product;

@@ -1,12 +1,9 @@
 package com.example.bookshop.serviceimpl;
 
 import com.example.bookshop.entity.Status;
-import com.example.bookshop.entity.User;
-import com.example.bookshop.pojos.StatusObj;
-import com.example.bookshop.pojos.UserObj;
-import com.example.bookshop.pojos.enums.StatusType;
+import com.example.bookshop.pojosdto.StatusDto;
+import com.example.bookshop.pojosdto.enums.StatusType;
 import com.example.bookshop.repository.IStatusRepository;
-import com.example.bookshop.repository.IUserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +22,7 @@ public class StatusServiceImpl {
     public void fillStatuses() {
         List<Status> statusList = new ArrayList<>();
         for (StatusType type : StatusType.values()){
-            statusList.add(converter.statusToEntity(new StatusObj(type)));
+            statusList.add(converter.statusToEntity(new StatusDto(type)));
         }
         statusRepository.saveAll(statusList);
     }

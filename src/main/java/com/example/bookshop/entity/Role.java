@@ -1,6 +1,6 @@
 package com.example.bookshop.entity;
 
-import com.example.bookshop.pojos.enums.RoleType;
+import com.example.bookshop.pojosdto.enums.RoleType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

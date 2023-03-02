@@ -1,10 +1,9 @@
 package com.example.bookshop.controller;
 
 
-import com.example.bookshop.entity.Role;
 import com.example.bookshop.entity.User;
-import com.example.bookshop.pojos.RoleObj;
-import com.example.bookshop.pojos.UserObj;
+import com.example.bookshop.pojosdto.RoleDto;
+import com.example.bookshop.pojosdto.UserDto;
 import com.example.bookshop.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
@@ -31,21 +30,21 @@ public class UserController {
      */
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
-    public User addNewUser(@RequestParam String name,
+    public UserDto addNewUser(@RequestParam String name,
                            @RequestParam String login,
-                           @RequestParam RoleObj roleType){
-        return userService.addNewUser(new UserObj(name, login, roleType));
+                           @RequestParam RoleDto roleType){
+        return userService.addNewUser(new UserDto(name, login, roleType));
     }
 
     /**
      * Add one new users in DB
-     * @param userObj - User obj
+     * @param userDto - User obj
      * @return a JSON with added user
      */
     @PostMapping("/addUser")
     @ResponseStatus(HttpStatus.CREATED)
-    public User addNewUser(@RequestBody UserObj userObj) {
-        return userService.addNewUser(userObj);
+    public UserDto addNewUser(@RequestBody UserDto userDto) {
+        return userService.addNewUser(userDto);
     }
 
     /**
@@ -55,7 +54,7 @@ public class UserController {
      */
     @GetMapping("/get")
     @ResponseBody
-    public User getUser(@RequestParam int userId){
+    public UserDto getUser(@RequestParam int userId){
         return userService.getUser(userId);
     }
 
@@ -66,11 +65,8 @@ public class UserController {
      */
     @DeleteMapping("/delete")
     @ResponseBody
-    public String deleteUser(@RequestParam int userId){
-        User user = new User();
-        user = userService.getUser(userId);
+    public void deleteUser(@RequestParam int userId){
         userService.deleteUser(userId);
-        return user.getName() + " was deleted!";
     }
 
     /**
@@ -79,7 +75,7 @@ public class UserController {
      */
     @GetMapping("/all")
     @ResponseBody
-    public List<User> getAllUsers(){
+    public List<UserDto> getAllUsers(){
         return userService.getAllUsers();
     }
 }

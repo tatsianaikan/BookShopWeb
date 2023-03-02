@@ -2,16 +2,15 @@ package com.example.bookshop.serviceimpl;
 
 
 import com.example.bookshop.entity.User;
-import com.example.bookshop.mapper.Converter;
-import com.example.bookshop.pojos.UserObj;
+import com.example.bookshop.pojosdto.UserDto;
 import com.example.bookshop.repository.IUserRepository;
 import com.example.bookshop.service.IUserService;
 import jakarta.transaction.Transactional;
-import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.example.bookshop.mapper.Converter.converter;
 
@@ -22,24 +21,31 @@ public class UserServiceImpl implements IUserService {
     private IUserRepository userRepository;
 
     @Transactional
-    public User addNewUser(UserObj userObj) {
-       User userEnity = converter.userToEntity(userObj);
-       return userRepository.save(userEnity);
+    public UserDto addNewUser(UserDto userDto) {
+       User userEnity =  userRepository.save(converter.userToEntity(userDto));
+       return converter.userToDto(userEnity);
     }
 
     @Transactional
-    public List<User> getAllUsers() {
+    public List<UserDto> getAllUsers() {
         List<User> usersResponse =(List<User>) userRepository.findAll();
-        return usersResponse;
+        return usersResponse.stream()
+                            .map(userEntry -> converter.userToDto(userEntry))
+                            .collect(Collectors.toList());
     }
 
     @Transactional
-    public User getUser(int idUser) {
-        return userRepository.findById(idUser).get();
+    public UserDto getUser(int idUser) {
+        User userEnity =  userRepository.findById(idUser).get();
+        return converter.userToDto(userEnity);
     }
 
     @Transactional
-    public void deleteUser(int idUser) {
+    public String deleteUser(int idUser) {
+        UserDto user = new UserDto();
+        user = getUser(idUser);
+
        userRepository.deleteById(idUser);
+       return user.getName() + " was deleted!";
     }
 }

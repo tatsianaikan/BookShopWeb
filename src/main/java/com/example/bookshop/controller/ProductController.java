@@ -3,8 +3,7 @@ package com.example.bookshop.controller;
 
 
 import com.example.bookshop.entity.Product;
-import com.example.bookshop.entity.Status;
-import com.example.bookshop.pojos.ProductObj;
+import com.example.bookshop.pojosdto.ProductDto;
 import com.example.bookshop.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,24 +20,24 @@ public class ProductController {
 
     /**
      * Add new product in DB
-     * @param productObj - Obj
+     * @param productDto - Obj
      * @return a JSON with added Product
      */
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
-    public Product addProduct(@RequestBody ProductObj productObj){
-        return productService.addProduct(productObj);
+    public ProductDto addProduct(@RequestBody ProductDto productDto){
+        return productService.addProduct(productDto);
     }
 
     /**
      * Edit product in DB
-     * @param productObj - Obj
+     * @param productDto - Obj
      * @return a JSON with edited Product
      */
     @PutMapping("/edit")
     @ResponseBody
-    public Product editProduct(@RequestBody ProductObj productObj){
-        return productService.editProduct(productObj);
+    public ProductDto editProduct(@RequestBody ProductDto productDto){
+        return productService.editProduct(productDto);
     }
 
     /**
@@ -48,7 +47,7 @@ public class ProductController {
      */
     @GetMapping("/get")
     @ResponseBody
-    public Product getProduct(@RequestParam int productId){
+    public ProductDto getProduct(@RequestParam int productId){
         return productService.getProduct(productId);
     }
 
@@ -59,7 +58,7 @@ public class ProductController {
      */
     @GetMapping("/search")
     @ResponseBody
-    public Product searchProduct (@RequestParam int productId){
+    public ProductDto searchProduct (@RequestParam int productId){
         return productService.searchProduct(productId);
     }
 
@@ -70,11 +69,8 @@ public class ProductController {
      */
     @DeleteMapping("/delete")
     @ResponseBody
-    public String deleteProduct(@RequestParam int productId){
-        Product product = new Product();
-        product =  productService.getProduct(productId);
+    public void deleteProduct(@RequestParam int productId){
         productService.deleteProduct(productId);
-        return product.getDescription() + " was deleted!";
     }
 
     /**
@@ -83,7 +79,7 @@ public class ProductController {
      */
     @GetMapping("/all")
     @ResponseBody
-    public List<Product> getAllProduct(){
+    public List<ProductDto> getAllProduct(){
         return productService.getAllProducts();
     }
 

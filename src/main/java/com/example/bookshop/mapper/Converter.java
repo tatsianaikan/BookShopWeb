@@ -4,12 +4,11 @@ import com.example.bookshop.entity.Booking;
 import com.example.bookshop.entity.Product;
 import com.example.bookshop.entity.Status;
 import com.example.bookshop.entity.User;
-import com.example.bookshop.pojos.BookingObj;
-import com.example.bookshop.pojos.ProductObj;
-import com.example.bookshop.pojos.StatusObj;
-import com.example.bookshop.pojos.UserObj;
+import com.example.bookshop.pojosdto.BookingDto;
+import com.example.bookshop.pojosdto.ProductDto;
+import com.example.bookshop.pojosdto.StatusDto;
+import com.example.bookshop.pojosdto.UserDto;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,15 +17,15 @@ public interface Converter {
     @Autowired
     Converter converter = Mappers.getMapper(Converter.class);
 
-    BookingObj bookingToObj(Booking booking);
-    Booking bookingToEntity(BookingObj bookingObj);
+    BookingDto bookingToDto(Booking booking);
+    Booking bookingToEntity(BookingDto bookingDto);
 
-    ProductObj productToObj(Product product);
-    Product productToEntity(ProductObj productObj);
+    ProductDto productToDto(Product product);
+    Product productToEntity(ProductDto productDto);
 
-    UserObj userToObj(User user);
-    User userToEntity(UserObj userObj);
+    UserDto userToDto(User user);
+    User userToEntity(UserDto userDto);
 
-    StatusObj statusToObj(Status status);
-    Status statusToEntity(StatusObj statusObj);
+    StatusDto statusToDto(Status status);
+    Status statusToEntity(StatusDto statusDto);
 }

@@ -1,6 +1,6 @@
 package com.example.bookshop.entity;
 
-import com.example.bookshop.pojos.enums.StatusType;
+import com.example.bookshop.pojosdto.enums.StatusType;
 import jakarta.persistence.*;
 import lombok.*;
 

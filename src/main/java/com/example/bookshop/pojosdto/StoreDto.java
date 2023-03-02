@@ -1,4 +1,4 @@
-package com.example.bookshop.pojos;
+package com.example.bookshop.pojosdto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,9 +8,9 @@ import java.io.Serializable;
 @Data
 @ToString
 @AllArgsConstructor
-public class StoreObj implements Serializable {
+public class StoreDto implements Serializable {
 
-    private ProductObj product;
+    private ProductDto product;
     private int avaliable_qtu;
     private int booked_qty;
     private int sold_qty;

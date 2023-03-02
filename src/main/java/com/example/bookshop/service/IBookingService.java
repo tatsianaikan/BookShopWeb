@@ -1,10 +1,7 @@
 package com.example.bookshop.service;
 
 import com.example.bookshop.entity.Booking;
-import com.example.bookshop.entity.User;
-import com.example.bookshop.mapper.Converter;
-import com.example.bookshop.pojos.BookingObj;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.bookshop.pojosdto.BookingDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -13,10 +10,10 @@ import java.util.List;
 @Component
 public interface IBookingService {
 
-    public Booking createBooking(BookingObj bookingObj);
-    public Booking editBooking(BookingObj booking);
-    public Booking getBooking (int idBooking);
-    public void deleteBooking (int idBooking);
+    public BookingDto createBooking(BookingDto bookingDto);
+    public BookingDto editBooking(BookingDto booking);
+    public BookingDto getBooking (int idBooking);
+    public String deleteBooking (int idBooking);
 
-    public List<Booking> getAllBookings();
+    public List<BookingDto> getAllBookings();
 }

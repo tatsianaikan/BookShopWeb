@@ -1,12 +1,10 @@
 package com.example.bookshop.controller;
 
 import com.example.bookshop.entity.Booking;
-import com.example.bookshop.entity.Product;
-import com.example.bookshop.entity.Status;
-import com.example.bookshop.pojos.BookingObj;
-import com.example.bookshop.pojos.ProductObj;
-import com.example.bookshop.pojos.StatusObj;
-import com.example.bookshop.pojos.UserObj;
+import com.example.bookshop.pojosdto.BookingDto;
+import com.example.bookshop.pojosdto.ProductDto;
+import com.example.bookshop.pojosdto.StatusDto;
+import com.example.bookshop.pojosdto.UserDto;
 import com.example.bookshop.service.IBookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,34 +26,34 @@ public class BookingController {
      */
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public Booking createBooking(@RequestParam StatusObj status,
+    public BookingDto createBooking(@RequestParam StatusDto status,
                                  @RequestParam String description,
-                                 @RequestParam ProductObj product,
-                                 @RequestParam UserObj user){
-        return bookingService.createBooking(new BookingObj(status, description, product, user));
+                                 @RequestParam ProductDto product,
+                                 @RequestParam UserDto user){
+        return bookingService.createBooking(new BookingDto(status, description, product, user));
     }
 
 
     /**
      * Create one new booking in DB
-     * @param bookingObj Object
+     * @param bookingDto Object
      * @return a JSON with created booking
      */
     @PostMapping("/createBooking")
     @ResponseStatus(HttpStatus.CREATED)
-    public Booking createBooking(@RequestBody BookingObj bookingObj) {
-        return bookingService.createBooking(bookingObj);
+    public BookingDto createBooking(@RequestBody BookingDto bookingDto) {
+        return bookingService.createBooking(bookingDto);
     }
 
     /**
      * Edit booking in DB
-     * @param bookingobj - Obj
+     * @param bookingDto - Obj
      * @return a JSON with edited Booking
      */
     @PutMapping("/edit")
     @ResponseBody
-    public Booking editBooking(@RequestBody BookingObj bookingobj){
-        return bookingService.editBooking(bookingobj);
+    public BookingDto editBooking(@RequestBody BookingDto bookingDto){
+        return bookingService.editBooking(bookingDto);
     }
 
     /**
@@ -65,7 +63,7 @@ public class BookingController {
      */
     @GetMapping("/get")
     @ResponseBody
-    public Booking getBooking(@RequestParam int bookingId){
+    public BookingDto getBooking(@RequestParam int bookingId){
         return bookingService.getBooking(bookingId);
     }
 
@@ -76,11 +74,10 @@ public class BookingController {
      */
     @DeleteMapping("/delete")
     @ResponseBody
-    public String deleteBooking(@RequestParam int bookingId){
-        Booking booking = new Booking();
-        booking = bookingService.getBooking(bookingId);
+    public void deleteBooking(@RequestParam int bookingId){
+        BookingDto bookingDto = new BookingDto();
+        bookingDto = bookingService.getBooking(bookingId);
         bookingService.deleteBooking(bookingId);
-        return booking.getDescription() + " was deleted!";
     }
 
     /**
@@ -89,7 +86,7 @@ public class BookingController {
      */
     @GetMapping("/all")
     @ResponseBody
-    public List<Booking> getAllBooking(){
+    public List<BookingDto> getAllBooking(){
         return bookingService.getAllBookings();
     }
 
