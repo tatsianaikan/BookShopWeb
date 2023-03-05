@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title th:text="${title}"/>
+
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="import" href="view/elements/header.html">
+
+        <script src="/view/js/authPageScript.js"></script>
+    </head>
+
+    <body>
+         <!-- Header -->
+        <div class="header w3-container w3-dark-grey" id="header">
+            <div class="w3-left">
+                <h1>BookShop</h1>
+            </div>
+        </div>
+
+         <div class="w3-container w3-display-middle" id="loginForm">
+<!--        <form class="w3-container w3-display-middle" id="loginForm" modelAttribute="login" action="loginProcess" method="post">-->
+            <table align="center" class="w3-table">
+                <tr>
+                    <td>Login:</td>
+                    <td><input type="text" name="itemNamefield" size="20" maxlength="20" id="login-input" ></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="password" name="itemNamefield" size="20" maxlength="20" id="password-input"></td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <button type="submit" name="button" id="registerbutton" class="w3-blue w3-btn w3-round-large" value="register" >Register</button>
+<!--                    <button type="submit" name="button" id="registerbutton" class="w3-blue w3-btn w3-round-large" value="register" onclick="location.href='/user'">Register</button>-->
+                    </td>
+                    <td align="left">
+                        <button type="submit" name="button" id="loginbutton" class="w3-green w3-right w3-btn w3-round-large" value="login" onclick="location.href='/user'">Login</button>
+                    </td>
+                </tr>
+            </table>
+<!--        </form>-->
+         </div>
+
+         <div id='validation-success' class="w3-panel w3-green" style="display: none">
+             <button class="w3-button">Success!</button>
+         </div>
+
+         <table align="center">
+            <tr>
+                <td style="font-style: italic; color: red;">
+                    <p th:text="${message}">message</p>
+                </td>
+            </tr>
+        </table>
+
+
+        <!--    Footer    -->
+        <div th:insert="view/elements/footer :: footer-Fragment"></div>
+
+    </body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title th:text="${title}"/>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    </head>
+</head>
+<body>
+
+<!-- Header -->
+    <header th:insert="view/elements/header.html :: header-Fragment"></header>
+
+<!--    Search form -->
+    <table align="center" class="w3-panel">
+        <tr>
+            <td>Product Name</td>
+            <td><input type="text" class="w3-input w3-border w3-round" name="userName" size="20" maxlength="20"></td>
+            <td>Author</td>
+            <td><input type="text" class="w3-input w3-border w3-round" name="userRole" size="20" maxlength="20"></td>
+        </tr>
+        <tr>
+            <td>Product Id</td>
+            <td><input type="text" class="w3-input w3-border w3-round" name="login" size="20" maxlength="20"></td>
+            <td>Available Quantity</td>
+            <td><input type="text" class="w3-input w3-border w3-round" name="Email" size="20" maxlength="20"></td>
+        </tr>
+        <tr>
+            <td>Booked Quantity</td>
+            <td><input type="text" class="w3-input w3-border w3-round" name="Email" size="20" maxlength="20"></td>
+            <td>Delivered Quantity</td>
+            <td><input type="text" class="w3-input w3-border w3-round" name="Email" size="20" maxlength="20"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><button type="submit" name="button" id="searchbutton" class="w3-blue w3-right w3-btn w3-round-large" value="Search" action="">Search</button></td>
+        </tr>
+    </table>
+
+<!--  Table of Users -->
+<div class="w3-container">
+    <h3>Search Results</h3>
+</div>
+<div class="w3-container w3-padding16">
+    <table id="stories" class="w3-table-all w3-card-4 w3-hoverable w3-striped w3-centered">
+            <tr class="w3-pale-blue">
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Available</th>
+                <th>Booked</th>
+                <th>Delivered</th>
+            </tr>
+            <tr th:each="user : ${usersList}">
+                <td> <span th:text="${user.userId} " /> </td>
+                <td> <span th:text="${user.name} " /> </td>
+                <td> <span th:text="${user.login}" /> </td>
+                <td> <span th:text="${user.role} " />      </td>
+                <td> <span th:text="${user.email}" /> </td>
+            </tr>
+        </table>
+</div>
+
+<!-- Bottom buttons and pagination -->
+    <div class="w3-row w3-padding">
+        <div class="w3-col w3-center" style="width:50%">
+            <table class="w3-panel w3-left">
+                <tr>
+                    <td>
+                        <button type="submit" name="button" id="createbutton" class="w3-green w3-btn w3-button w3-round-large" action="">Create</button>
+                    </td>
+                    <td>
+                        <button type="submit" name="button" id="editbutton" class="w3-blue w3-btn w3-button w3-round-large">Edit</button>
+                    </td>
+                    <td>
+                        <button type="submit" name="button" id="Deletebutton" class="w3-red w3-btn w3-button w3-round-large" action="">Delete</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="w3-container w3-half">
+            <div class="w3-col w3-right" style="width:50%">
+                <a href="/store" class="w3-button">&#10094; Previous</a>
+                <a href="/store" class="w3-button">1</a>
+                <a href="/store?pageNo=1" class="w3-button">2</a>
+                <a href="/store?pageNo=2" class="w3-button">3</a>
+                <a href="/store" class="w3-button w3-right">Next &#10095;</a>
+            </div>
+        </div>
+    </div>
+
+<!--    Footer    -->
+    <div th:insert="view/elements/footer :: footer-Fragment"></div>
+
+
+</body>
+</html>

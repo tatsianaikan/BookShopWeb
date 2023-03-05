@@ -11,9 +11,9 @@ import java.util.List;
 public interface IProductService {
     public ProductDto addProduct(ProductDto productDto);
     public ProductDto editProduct(ProductDto bookingDto);
-    public ProductDto getProduct (int idProduct);
-    public ProductDto searchProduct (int idProduct);
-    public String deleteProduct(int idProduct);
+    public ProductDto getProduct (long idProduct);
+    public ProductDto searchProduct (long idProduct);
+    public String deleteProduct(long idProduct);
 
     public List<ProductDto> getAllProducts();
 }

@@ -26,15 +26,18 @@ class UserServiceTests {
     public void addNewUser() {
         String actualUserName = "tata";
         String actualUserlogin = "kolyta";
+        String actualEmail = "user@gmail.com";
 
         UserDto userResp = new UserDto();
         userResp.setName(actualUserName);
         userResp.setLogin(actualUserlogin);
-        userResp.setRole(new RoleDto(RoleType.CUSTOMER));
+        userResp.setEmail(actualEmail);
+        userResp.setRole(RoleType.CUSTOMER);
 
         userResp = userService.addNewUser(userResp);
         assertThat(userResp.getName().equals(actualUserName));
         assertThat(userResp.getLogin().equals(actualUserlogin));
+        assertThat(userResp.getEmail().equals(actualEmail));
         assertThatNoException();
 
     }
@@ -42,7 +45,7 @@ class UserServiceTests {
     @Test
 	public void givenAllUsers() {
         ArrayList<UserDto> users = new ArrayList<>();
-        users = (ArrayList<UserDto>) userService.getAllUsers();
+        users = (ArrayList<UserDto>) userService.getAllUsers(0, 2);
         assertThat(users.size() > 0);
     }
 }

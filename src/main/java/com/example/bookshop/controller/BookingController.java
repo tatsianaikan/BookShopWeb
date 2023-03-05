@@ -8,10 +8,13 @@ import com.example.bookshop.pojosdto.UserDto;
 import com.example.bookshop.service.IBookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@RestController
+@Controller
+//@RestController
 @RequestMapping("/booking")
 public class BookingController {
     @Autowired
@@ -63,7 +66,7 @@ public class BookingController {
      */
     @GetMapping("/get")
     @ResponseBody
-    public BookingDto getBooking(@RequestParam int bookingId){
+    public BookingDto getBooking(@RequestParam long bookingId){
         return bookingService.getBooking(bookingId);
     }
 
@@ -74,7 +77,7 @@ public class BookingController {
      */
     @DeleteMapping("/delete")
     @ResponseBody
-    public void deleteBooking(@RequestParam int bookingId){
+    public void deleteBooking(@RequestParam long bookingId){
         BookingDto bookingDto = new BookingDto();
         bookingDto = bookingService.getBooking(bookingId);
         bookingService.deleteBooking(bookingId);
@@ -88,6 +91,12 @@ public class BookingController {
     @ResponseBody
     public List<BookingDto> getAllBooking(){
         return bookingService.getAllBookings();
+    }
+
+    @GetMapping("")
+    public String bookingsPage(Model model) {
+        model.addAttribute("title", "Bookings Page");
+        return "view/pages/bookingsPage";
     }
 
 }

@@ -32,11 +32,11 @@ class BookingControllerTests {
     @Autowired
     BookingController bookingController;
     @Autowired
-    private UserController userController;
+    private UserProfileController userProfileController;
 
     UserDto userDto;
-    String actualUserName = "tata2";
-    String actualUserlogin = "kolyta2";
+    String actualUserName = "testUser";
+    String actualUserlogin = "testUserLogin";
 
 
     @Test
@@ -74,7 +74,7 @@ class BookingControllerTests {
     protected UserDto addUser() {
         RoleDto roleType = new RoleDto(RoleType.CUSTOMER);
         userDto = new UserDto(actualUserName, actualUserlogin, roleType);
-        userController.addNewUser(userDto);
+        userProfileController.addNewUser(userDto);
         return userDto;
     }
 

@@ -12,8 +12,8 @@ public interface IBookingService {
 
     public BookingDto createBooking(BookingDto bookingDto);
     public BookingDto editBooking(BookingDto booking);
-    public BookingDto getBooking (int idBooking);
-    public String deleteBooking (int idBooking);
+    public BookingDto getBooking (long idBooking);
+    public String deleteBooking (long idBooking);
 
     public List<BookingDto> getAllBookings();
 }
