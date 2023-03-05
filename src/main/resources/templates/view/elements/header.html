@@ -1,0 +1,31 @@
+<div th:fragment="header-Fragment">
+    <div class="header w3-row w3-border w3-dark-grey w3-container w3-padding" id="header">
+        <div class="w3-container w3-half">
+            <div class="w3-row">
+                <div class="w3-col w3-center" style="width:20%">
+                    <h3>BookShop</h3>
+                </div>
+                <div class="w3-col w3-center" style="width:80%">
+                    <a href="/product" class="w3-button w3-hover-none w3-text-grey w3-hover-text-white  w3-large">Catalogue</a>
+                    <a href="/booking" class="w3-button w3-hover-none w3-text-grey w3-hover-text-white  w3-large">Booking</a>
+                    <a href="/store" class="w3-button w3-hover-none w3-text-grey w3-hover-text-white  w3-large">Store</a>
+                    <a href="/user" class="w3-button w3-large">Users</a>
+                </div>
+            </div>
+        </div>
+        <div class="w3-container w3-half">
+            <div class="w3-row">
+                <div class="w3-col w3-center" style="width:50%">
+                    <a href="/userProfile" class="w3-button w3-hover-none w3-text-grey w3-hover-text-white w3-large">User Profile</a>
+                    <a href="/" class="w3-button w3-hover-none w3-text-grey w3-hover-text-white w3-large">Log Out</a>
+                </div>
+                <div class="w3-col w3-center" style="width:30%">
+                    <input type="text" class="w3-input w3-border w3-round " maxlength="10" size="10"  placeholder="Search..">
+                </div>
+                <div class="w3-col w3-center" style="width:20%">
+                    <button type="submit" id="searchHeaderbutton" class="w3-button w3-border w3-border-blue w3-round-large w3-text-blue" action="">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

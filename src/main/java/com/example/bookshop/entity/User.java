@@ -1,5 +1,6 @@
 package com.example.bookshop.entity;
 
+import com.example.bookshop.pojosdto.enums.RoleType;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,7 +30,7 @@ public class User implements Serializable {
    // @OneToMany
     @JoinColumn(name = "role_id", nullable = false)
     @Column
-    private Role role;
+    private RoleType role;
 
     @Column
     private String email;
