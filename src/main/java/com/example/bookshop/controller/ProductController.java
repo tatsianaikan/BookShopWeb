@@ -7,11 +7,14 @@ import com.example.bookshop.pojosdto.ProductDto;
 import com.example.bookshop.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
+//@RestController
 @RequestMapping("/product")
 public class ProductController {
 
@@ -47,7 +50,7 @@ public class ProductController {
      */
     @GetMapping("/get")
     @ResponseBody
-    public ProductDto getProduct(@RequestParam int productId){
+    public ProductDto getProduct(@RequestParam long productId){
         return productService.getProduct(productId);
     }
 
@@ -58,7 +61,7 @@ public class ProductController {
      */
     @GetMapping("/search")
     @ResponseBody
-    public ProductDto searchProduct (@RequestParam int productId){
+    public ProductDto searchProduct (@RequestParam long productId){
         return productService.searchProduct(productId);
     }
 
@@ -69,7 +72,7 @@ public class ProductController {
      */
     @DeleteMapping("/delete")
     @ResponseBody
-    public void deleteProduct(@RequestParam int productId){
+    public void deleteProduct(@RequestParam long productId){
         productService.deleteProduct(productId);
     }
 
@@ -81,6 +84,12 @@ public class ProductController {
     @ResponseBody
     public List<ProductDto> getAllProduct(){
         return productService.getAllProducts();
+    }
+
+    @GetMapping("")
+    public String productsPage(Model model) {
+        model.addAttribute("title", "Products Page");
+        return "view/pages/productsPage";
     }
 
 }

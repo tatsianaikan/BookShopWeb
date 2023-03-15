@@ -32,19 +32,19 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Transactional
-    public ProductDto getProduct(int idProduct) {
+    public ProductDto getProduct(long idProduct) {
         Product productEntry = productRepository.findById(idProduct).get();
         return converter.productToDto(productEntry);
     }
 
     @Transactional
-    public ProductDto searchProduct(int idProduct) {
+    public ProductDto searchProduct(long idProduct) {
         boolean exist = productRepository.equals(idProduct);
         return  exist? getProduct(idProduct) : null;
     }
 
     @Transactional
-    public String deleteProduct(int idProduct) {
+    public String deleteProduct(long idProduct) {
         ProductDto productDto = new ProductDto();
         productDto =  getProduct(idProduct);
 

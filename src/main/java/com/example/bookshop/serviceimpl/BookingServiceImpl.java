@@ -36,13 +36,13 @@ public class BookingServiceImpl implements IBookingService {
     }
 
     @Transactional
-    public BookingDto getBooking(int idBooking) {
+    public BookingDto getBooking(long idBooking) {
         Booking bookingEntry = bookingRepository.findById(idBooking).get();
         return converter.bookingToDto(bookingEntry);
     }
 
     @Transactional
-    public String deleteBooking(int idBooking) {
+    public String deleteBooking(long idBooking) {
         BookingDto bookingDto = new BookingDto();
         bookingDto = getBooking(idBooking);
 

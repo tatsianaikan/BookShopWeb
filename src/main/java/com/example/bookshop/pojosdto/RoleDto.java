@@ -13,4 +13,8 @@ public class RoleDto implements Serializable {
     public RoleDto(RoleType roleType){
         this.roleType = roleType;
     }
+
+    public RoleType getRoleType(){
+        return roleType;
+    }
 }

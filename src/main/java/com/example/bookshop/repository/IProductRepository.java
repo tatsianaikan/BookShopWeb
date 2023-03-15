@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
 // CRUD refers Create, Read, Update, Delete
-public interface IProductRepository extends CrudRepository<Product, Integer> {
+public interface IProductRepository extends CrudRepository<Product, Long> {
 }
